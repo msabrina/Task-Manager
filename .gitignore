@@ -1,6 +1,6 @@
 # dependencies
-/node_modules
-/data-node
+node_modules
+data-node
 /.pnp
 .pnp.js
 
