@@ -1,6 +1,8 @@
 # base image
 FROM node:9.6.1
 
+ENV NPM_CONFIG_LOGLEVEL warn
+
 # set working directory
 WORKDIR /To-Do
 
