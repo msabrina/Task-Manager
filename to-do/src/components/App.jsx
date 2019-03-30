@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
-import Todos from './Todos';
-import AddTodo from './AddTodo';
+// import './App.css';
+// import Todos from './Todos';
+import AddTodo from '../containers/AddTodo';
+import Filter from './Filters';
+// import FilterBar from './FilterBar';
+import VisibleTodoList from '../containers/VisibleTodoList';
 
 class App extends Component {
   constructor(props) {
@@ -11,11 +14,11 @@ class App extends Component {
                 dbResponse: '',
 
                 todos: [
-                  { id: 1,
-                    content: 'buy some milk',
-                    day: '',
-                  },
-                  {id: 2, content: 'play mario kart'}
+                  // { id: 1,
+                  //   content: 'buy some milk',
+                  //   day: '',
+                  // },
+                  // {id: 2, content: 'play mario kart'}
                 ]
     };
   }
@@ -38,22 +41,22 @@ class App extends Component {
     this.callDB();
   }
 
-  deleteTodo = (id) => {
-    const todos = this.state.todos.filter(todo => {
-      return todo.id !== id
-    });
-    this.setState({
-      todos
-    });
-  }
+  // deleteTodo = (id) => {
+  //   const todos = this.state.todos.filter(todo => {
+  //     return todo.id !== id
+  //   });
+  //   this.setState({
+  //     todos
+  //   });
+  // }
 
-  addTodo = (todo) => {
-    todo.id = Math.random();
-    let todos = [...this.state.todos, todo];
-    this.setState({
-      todos
-    })
-  }
+  // addTodo = (todo) => {
+  //   todo.id = Math.random();
+  //   let todos = [...this.state.todos, todo];
+  //   this.setState({
+  //     todos
+  //   })
+  // }
 
 
 
@@ -66,8 +69,10 @@ class App extends Component {
           <p className="App-intro">{this.state.apiResponse}</p>
           <p className="App-intro">{this.state.dbResponse}</p>
 
-          <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
-          <AddTodo addTodo={this.addTodo}/>
+          <AddTodo />
+          <Filter />
+          <VisibleTodoList />
+
       </div>
     );
   }

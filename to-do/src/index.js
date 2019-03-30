@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
-import { App } from '.components/App';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 //import redux
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from '.reducers';
+import rootReducer from './reducers';
 
 const store = createStore(rootReducer);
 
