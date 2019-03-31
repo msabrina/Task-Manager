@@ -6,9 +6,15 @@ const todos = (state = [], action) => {
         {
           id: action.id,
           text: action.text,
+          content: action.content,
           completed: false
         }
-      ]
+      ];
+    // case 'DELETE_TASK':
+    //   return state.filter(t =>
+    //     todo(t, action)
+
+    //   );
     case 'TOGGLE_TODO':
       return state.map(todo =>
         (todo.id === action.id)

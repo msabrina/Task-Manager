@@ -1,22 +1,34 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types'
 
-const Todo = ({ onClick, completed, text }) => (
-  <li
-    onClick={onClick}
-    style={{
-      textDecoration: completed ? 'line-through' : 'none'
-    }}
+const Todo = ({ id, onClick, handleClick, completed, text, content }) =>  (
 
-  >
-    {text}
-  </li>
+  // toggleContent = () => {
+  //   this.state = {active: false};
+  //   this.setState((contentState) => {
+  //     active: !contentState.active
+  //   });
+  // }
+
+
+    // <div className="task-card"  onClick={() => handleClick(id)}>
+      <li  id={id} style={{ textDecoration: completed ? 'line-through' : 'none'}}> {text}
+        <span> {content}</span>
+        <span > - </span>
+
+      </li>
+    // </div>
 )
+  //use propTypes to validate data received
 
 Todo.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  handleClick: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  removeClick: PropTypes.func.isRequired
 }
 
-export default Todo
+
+export default Todo;

@@ -7,7 +7,7 @@ const Filter = () => (
 
     <FilterLink filter={FilterStatus.SHOW_ALL}>List</FilterLink>
     <FilterLink filter={FilterStatus.SHOW_ACTIVE}>Active</FilterLink>
-    <FilterLink filter={FilterStatus.SHOW_COMPLETED}>Complted</FilterLink>
+    <FilterLink filter={FilterStatus.SHOW_COMPLETED}>Completed</FilterLink>
 
   </div>
 

@@ -10,7 +10,8 @@ import { addTodo } from '../actions';
 //send as props
 const AddTodo = ({ dispatch, state }) => {
 
-  let input, team; //input variable which will reference input element
+  let text, content;
+  //assing the node ref to input variable. (handleChange())
 
   // handleChange = (e) => {
   //   this.setState({
@@ -26,33 +27,29 @@ const AddTodo = ({ dispatch, state }) => {
   //   });
   // }
 
-  const assignTask = (e) => {
-    e.preventDefault()
+    const assignTask = (e) => {
+      e.preventDefault()
 
-      if (!input.value.trim())
-        return
+        if (!text.value.trim())
+          return
 
-        dispatch(addTodo({text: input.value,
-                         assign: team.value.trim() ? team.value : 'All'
-                       }));
-        input.value =''
+        dispatch(addTodo({
+          text: text.value,
+          content: content.value.trim() ? content.value : 'All'
+        }));
 
-      }
+        text.value = '';
+        content.value = '';
+    };
 
 
     return (
       <div>
-        <form onSubmit={assignTask}
-        >
-          <input type="text"
-             ref={node => {
-              input=node //assing the node ref to input variable. (handleChange())
-             }}
-          />
-          <select name="favoriteColor" component="select" type="text"
-             ref={node => {
-              input=node //assing the node ref to input variable. (handleChange())
-             }}>
+        <form onSubmit={assignTask} >
+          <input type="text" ref={node => {text=node}} placeholder="Task" />
+          <input type="text" ref={node => {content=node}} placeholder="Description" />
+
+          <select name="favoriteColor" component="select" type="text">
             <option></option>
             <option value="#ff0000">Red</option>
             <option value="#00ff00">Green</option>
@@ -62,8 +59,9 @@ const AddTodo = ({ dispatch, state }) => {
           <button type="submit" > Add todo </button>
         </form>
       </div>
-    )
-  }
+    );
+
+};
 
 
 export default connect()(AddTodo);

@@ -1,26 +1,30 @@
 import React from 'react';
+// import { connect } from 'react-redux';
+import { deleteTask } from '../actions';
 import PropTypes from 'prop-types';
 import Todo from './Todo';
 
 const Todos = ({ todos, toggleTodo }) => (
-  <ul>
+  <div>
     {todos.map(todo =>
       <Todo
         key={todo.id}
         {...todo}
+        // onClick={deleteTask.id}
         onClick={() => toggleTodo(todo.id)}
-
-
       />
     )}
-  </ul>
-)
+  </div>
+);
+
 
 Todos.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     completed: PropTypes.bool.isRequired,
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    removeClick: PropTypes.func.isRequired
   }).isRequired).isRequired,
   toggleTodo: PropTypes.func.isRequired
 }
@@ -48,4 +52,4 @@ Todos.propTypes = {
 //     )
 // }
 
-export default Todos
+export default Todos;
