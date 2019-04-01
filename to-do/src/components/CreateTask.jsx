@@ -7,6 +7,7 @@ class CreateTask extends Component {
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
       id:'',
       title: '',

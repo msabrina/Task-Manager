@@ -13,7 +13,7 @@ class Home extends Component   {
 
 //GET data from api to render on front-end
   componentDidMount() {
-    axios.get('http://localhost:4000/testDB/')
+    axios.get('http://localhost:4000/testDB')
       .then(response => {
         this.setState({ todo: response.data});
         console.log(this.state);

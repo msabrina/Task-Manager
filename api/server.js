@@ -7,9 +7,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const mongoose = require('mongoose');
-const config = require('./DB.js');
-const PORT = 4000;
+// const mongoose = require('mongoose');
+// const config = require('./DB.js');
+// const PORT = 4000;
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/todos', testDBRouter);
+app.use('/', testDBRouter);
 app.use('/users', usersRouter);
 app.use('/routeAPI', testAPIRouter);
 app.use('/testDB', testDBRouter);
@@ -44,9 +44,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-app.listen(PORT, function(){
-  console.log('Server is running on Port:',PORT);
-});
+
 
 // error handler
 app.use(function(err, req, res, next) {

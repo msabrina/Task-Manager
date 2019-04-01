@@ -10,7 +10,7 @@ router.get("/", function(req, res, next) {
     res.send(databaseConnection);
 });
 // Connecting to MongoDB
-mongoose.connect('db://localhost/testDB',
+mongoose.connect('mongodb://localhost/testDB',
                   { useNewUrlParser: true }
                  );
 // If there is a connection error send an error message
@@ -55,41 +55,7 @@ router.route('/').get((req, res) => {
   });
 });
 
-// Edit route
 
-router.route('/edit/:id').get((req, res) => {
-  let id = req.params.id;
-  todos.findById(id, (err, todos) =>{
-    res.json(todos);
-  });
-});
-
-router.route('/update/:id').post((req, res) => {
-  todos.findById(req.params.id, (err, todos) => {
-    if(!todos)
-      res.status(404).send("data not found");
-    else {
-      todos.title = req.body.title;
-      todos.content = req.body.content;
-
-      todos.save().then(business => {
-        res.json('Update complete');
-      })
-      .catch(err => {
-        res.status(404).send("unable to update db");
-      });
-    }
-  });
-});
-
-// Delete route
-
-router.route('/delete/:id'). get((req, res) => {
-  todos.findByIdAndRemove({_id: req.params.id}, (err, todos) => {
-    if(err) res.json(err);
-    else res.json('Deleted')
-  });
-});
 
 
 module.exports = router;
