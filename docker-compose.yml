@@ -19,13 +19,24 @@ services:
         image: node:8.11.4
         restart: always
         ports:
-            - "9000:9000"
+            - "8080:8080"
         volumes:
             - ./api:/api
             - /api/node_modules
 
         networks:
             ["webappnetwork"]
+    mongodb:
+        image: mongo
+        restart: always
+        container_name: "mongodb"
+        volumes:
+            - ./data-node:/data/db
+        ports:
+            - 27017:27017
+        command: mongod --noauth --smallfiles
+        networks:
+            - "webappnetwork"
 
 networks:
     webappnetwork:

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
+
 // import './App.css';
-// import Todos from './Todos';
-import AddTodo from '../containers/AddTodo';
-import Filter from './Filters';
-// import FilterBar from './FilterBar';
-import VisibleTodoList from '../containers/VisibleTodoList';
+import CreateTask from './CreateTask';
+import Home from './Home';
 
 class App extends Component {
   constructor(props) {
@@ -14,11 +12,7 @@ class App extends Component {
                 dbResponse: '',
 
                 todos: [
-                  // { id: 1,
-                  //   content: 'buy some milk',
-                  //   day: '',
-                  // },
-                  // {id: 2, content: 'play mario kart'}
+
                 ]
     };
   }
@@ -35,6 +29,8 @@ class App extends Component {
         .then(res => this.setState({ dbResponse: res }))
         .catch(err => err);
   }
+
+
 
   componentDidMount() {
     this.callAPI();
@@ -68,10 +64,9 @@ class App extends Component {
         </header>
           <p className="App-intro">{this.state.apiResponse}</p>
           <p className="App-intro">{this.state.dbResponse}</p>
+          <CreateTask />
+          <Home />
 
-          <AddTodo />
-          <Filter />
-          <VisibleTodoList />
 
       </div>
     );
