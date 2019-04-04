@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // import './App.css';
+import TodoList from './TodoList';
 import CreateTask from './CreateTask';
-import Home from './Home';
+import EditTask from './EditTask';
 
 class App extends Component {
   constructor(props) {
@@ -10,65 +11,42 @@ class App extends Component {
     this.state = {
                 apiResponse: '',
                 dbResponse: '',
-
-                todos: [
-
-                ]
+                todos: []
     };
   }
 
-  callAPI() {
-    fetch("http://localhost:9000/routeAPI")
-        .then(res => res.text())
-        .then(res => this.setState({ apiResponse: res }));
-  }
 
-  callDB() {
-    fetch("http://localhost:9000/testDB")
-        .then(res => res.text())
-        .then(res => this.setState({ dbResponse: res }))
-        .catch(err => err);
-  }
-
-
-
-  componentDidMount() {
-    this.callAPI();
-    this.callDB();
-  }
-
-  // deleteTodo = (id) => {
-  //   const todos = this.state.todos.filter(todo => {
-  //     return todo.id !== id
-  //   });
-  //   this.setState({
-  //     todos
-  //   });
-  // }
-
-  // addTodo = (todo) => {
-  //   todo.id = Math.random();
-  //   let todos = [...this.state.todos, todo];
-  //   this.setState({
-  //     todos
-  //   })
-  // }
 
 
 
 
   render() {
     return (
-      <div className="App">
-        <header className="">
-        </header>
-          <p className="App-intro">{this.state.apiResponse}</p>
-          <p className="App-intro">{this.state.dbResponse}</p>
-          <CreateTask />
-          <Home />
+      <Router>
+        <div className="Container">
+
+          <nav className="navbar">
+            <Link to={'/'} className="nav-link">Sabrina's TodoList</Link>
+            <div className="collapse navbar-collapse" >
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link to={'/'} className="nav-link">TodoList</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={'/create'} className="nav-link">Create</Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+            <Route path='/' exact component={ TodoList } />
+            <Route  path='/create'  component={ CreateTask } />
+            <Route path='/edit/:id' component={ EditTask } />
+
+
 
 
       </div>
+      </Router>
     );
   }
 }

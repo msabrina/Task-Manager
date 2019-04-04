@@ -3,15 +3,19 @@ const Schema = mongoose.Schema;
 
 // Create and define collection and schema with datatypes
 
-let Todos = new Schema({
-  title: {
+let Todo = new Schema({
+  task_title: {
     type: String
   },
-  content: {
+  task_content: {
     type: String
+  },
+  task_priority: {
+    type: String
+  },
+  task_completed: {
+    type: Boolean
   }
-},{
-  collection: 'todos'
 });
 
-module.exports = mongoose.model('Todos', Todos);
+module.exports = mongoose.model('Todo', Todo);

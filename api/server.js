@@ -7,54 +7,89 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-// const mongoose = require('mongoose');
-// const config = require('./DB.js');
-// const PORT = 4000;
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const testAPIRouter = require('./routes/routeAPI');
-const testDBRouter = require('./routes/testDB');
-
+const mongoose = require('mongoose');
+const config = require('./DB.js');
+const PORT = 4000;
 const app = express();
 
+const todoRoutes = express.Router();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+let Todos = require('./models/db');
 
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', testDBRouter);
-app.use('/users', usersRouter);
-app.use('/routeAPI', testAPIRouter);
-app.use('/testDB', testDBRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  console.log(req);
-  next(createError(404));
+// Connecting to MongoDB
+mongoose.connect('mongodb://localhost:27017/todos', { useNewUrlParser: true });
+// If there is a connection error send an error message
+mongoose.connection.on("error", error => {
+    console.log("Database connection error:", error);
+    // databaseConnection = "Error connecting to Database";
+});
+// If connected to MongoDB send a success message
+mongoose.connection.once("open", () => {
+    console.log("Connected to Database");
+    // databaseConnection = "Connected to Database";
 });
 
 
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+todoRoutes.route('/').get(function(req, res) {
+    Todos.find(function(err, todos) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(todos);
+        }
+    });
 });
+
+todoRoutes.route('/:id').get(function(req, res) {
+    let id = req.params.id;
+    Todos.findById(id, function(err, todo) {
+        res.json(todo);
+    });
+});
+
+todoRoutes.route('/add').post(function(req, res) {
+    let todo = new Todos(req.body);
+    todo.save()
+        .then(todo => {
+            res.status(200).json({'todo': 'todo added successfully'});
+        })
+        .catch(err => {
+            res.status(400).send('adding new todo failed');
+        });
+});
+
+todoRoutes.route('/update/:id').post(function(req, res) {
+    Todos.findById(req.params.id, function(err, todo) {
+        if (!todo)
+            res.status(404).send("data is not found");
+        else
+            todo.task_title = req.body.task_title;
+            todo.task_content = req.body.task_content;
+            todo.task_priority = req.body.task_priority;
+            todo.task_completed = req.body.task_completed;
+
+            todo.save().then(todo => {
+                res.json('Todo updated!');
+            })
+            .catch(err => {
+                res.status(400).send("Update not possible");
+            });
+    });
+});
+
+app.use('/todos', todoRoutes);
+
+app.listen(PORT, function(){
+  console.log('Server is running on Port:',PORT);
+});
+
+
+
 
 module.exports = app;
