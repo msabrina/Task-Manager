@@ -30,6 +30,9 @@ app.listen(PORT, function(){
 });
 
 
+// const testDBRouter = require('./routes/testDB');
+
+
 // Connect to MongoDB
 mongoose.connect('mongodb://msabrina:sampleapp1@ds139847.mlab.com:39847/heroku_m7ldgwvl', { useNewUrlParser: true });
 // If there is a connection error send an error message
@@ -40,6 +43,22 @@ mongoose.connection.on("error", error => {
 mongoose.connection.once("open", () => {
     console.log("Connected to Database");
 });
+
+
+// //Connecting to MongoDB
+// mongoose.connect('mongodb://localhost/testDB',
+//                   { useNewUrlParser: true }
+//                  );
+// // If there is a connection error send an error message
+// mongoose.connection.on("error", error => {
+//     console.log("Database connection error:", error);
+//     databaseConnection = "Error connecting to Database";
+// });
+// // If connected to MongoDB send a success message
+// mongoose.connection.once("open", () => {
+//     console.log("Connected to Database");
+//     databaseConnection = "Connected to Database";
+// });
 
 
 // fetch all available data in our database
@@ -63,7 +82,7 @@ todoRoutes.route('/:id').get(function(req, res) {
     });
 });
 
-// create method; add new data into db
+// create method; add new data in our db
 
 todoRoutes.route('/add').post(function(req, res) {
     let todo = new Todos(req.body);
@@ -76,7 +95,7 @@ todoRoutes.route('/add').post(function(req, res) {
         });
 });
 
-// update method; edit existing task
+// update existing task
 
 todoRoutes.route('/update/:id').post(function(req, res) {
     Todos.findById(req.params.id, function(err, todo) {
@@ -100,8 +119,20 @@ todoRoutes.route('/update/:id').post(function(req, res) {
 
 // delete method; remove task from db
 
+// todoRoutes.route('/delete/:id').post(function(req, res) {
+//   // console.log(req.body)
+//     console.log('delete called');
+//   console.log('delete id:')
+// //   console.log(req.body)
+//     Todos.remove({_id: req.params.id}, function(err, todo) {
+//       if(err) res.json(err);
+//       else res.json('Deleted');
+//     });
+// })
+
 todoRoutes.route('/delete/:id').delete(function(req, res) {
   console.log('delete called');
+
   Todos.findById(res.params.id).deleteOne(function(err, todos) {
   // let todo = req.params._id;
     console.log('remove')
@@ -111,6 +142,21 @@ todoRoutes.route('/delete/:id').delete(function(req, res) {
       res.json('deleted')
   })
 });
+
+
+// app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use('/', testDBRouter);
+// app.use('/users', usersRouter);
+// app.use('/routeAPI', testAPIRouter);
+// app.use('/testDB', testDBRouter);
+
+// // catch 404 and forward to error handler
+// app.use(function(req, res, next) {
+//   console.log(req);
+//   next(createError(404));
+// });
 
 
 
