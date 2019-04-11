@@ -74,7 +74,7 @@ router.route('/update/:id').post((req, res) => {
   });
 });
 
-router.route('/delete/:id').get((req, res) => {
+router.route('/delete/:id').delete((req, res) => {
   Todos.findByIdAndRemove({_id: req.params.id}, ((err, business)=>{
     if(err) res.json(err);
     else res.json('deleted');

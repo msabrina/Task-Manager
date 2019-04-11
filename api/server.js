@@ -14,9 +14,6 @@ const todoRoutes = express.Router();
 
 let Todos = require('./models/db');
 
-// const dbRoute ='mongodb+srv://msabrina:<password>@sampleapps-gx7bi.mongodb.net/test?retryWrites=true'
-
-
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -45,120 +42,69 @@ mongoose.connection.once("open", () => {
 });
 
 
-// //Connecting to MongoDB
-// mongoose.connect('mongodb://localhost/testDB',
-//                   { useNewUrlParser: true }
-//                  );
-// // If there is a connection error send an error message
-// mongoose.connection.on("error", error => {
-//     console.log("Database connection error:", error);
-//     databaseConnection = "Error connecting to Database";
-// });
-// // If connected to MongoDB send a success message
-// mongoose.connection.once("open", () => {
-//     console.log("Connected to Database");
-//     databaseConnection = "Connected to Database";
-// });
-
-
 // fetch all available data in our database
 
 todoRoutes.route('/').get(function(req, res) {
-    Todos.find(function(err, todos) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(todos);
-        }
-    });
+  Todos.find(function(err, todos) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(todos);
+    }
+  });
 });
 
 // get a single task
 
 todoRoutes.route('/:id').get(function(req, res) {
-    let id = req.params.id;
-    Todos.findById(id, function(err, todo) {
-        res.json(todo);
-    });
+  let id = req.params.id;
+  Todos.findById(id, function(err, todo) {
+    res.json(todo);
+  });
 });
 
-// create method; add new data in our db
+// create method; add new task in db
 
 todoRoutes.route('/add').post(function(req, res) {
-    let todo = new Todos(req.body);
-    todo.save()
-        .then(todo => {
-            res.status(200).json({'todo': 'todo added successfully'});
-        })
-        .catch(err => {
-            res.status(400).send('adding new todo failed');
-        });
-});
-
-// update existing task
-
-todoRoutes.route('/update/:id').post(function(req, res) {
-    Todos.findById(req.params.id, function(err, todo) {
-        if (!todo)
-            res.status(404).send("data is not found");
-        else
-            todo.task_title = req.body.task_title;
-            todo.task_content = req.body.task_content;
-            todo.task_priority = req.body.task_priority;
-            todo.task_completed = req.body.task_completed;
-
-            todo.save().then(todo => {
-                res.json('Todo updated!');
-            })
-            .catch(err => {
-                res.status(400).send("Update not possible");
-            });
+  let todo = new Todos(req.body);
+  todo.save()
+    .then(todo => {
+      res.status(200).json({'todo': 'todo added successfully'});
+    })
+    .catch(err => {
+      res.status(400).send('adding new todo failed');
     });
 });
 
+// update method; edit existing task
 
-// delete method; remove task from db
+todoRoutes.route('/update/:id').post(function(req, res) {
+  Todos.findById(req.params.id, function(err, todo) {
+    if (!todo)
+      res.status(404).send("data is not found");
+    else
+      todo.task_title = req.body.task_title;
+      todo.task_content = req.body.task_content;
+      todo.task_priority = req.body.task_priority;
+      todo.task_completed = req.body.task_completed;
 
-// todoRoutes.route('/delete/:id').post(function(req, res) {
-//   // console.log(req.body)
-//     console.log('delete called');
-//   console.log('delete id:')
-// //   console.log(req.body)
-//     Todos.remove({_id: req.params.id}, function(err, todo) {
-//       if(err) res.json(err);
-//       else res.json('Deleted');
-//     });
-// })
-
-todoRoutes.route('/delete/:id').delete(function(req, res) {
-  console.log('delete called');
-  console.log('delete id:'todos)
-  console.log(Todos._id)
-  Todos.findById(res.params.id).deleteOne(function(err, todos) {
-  // let todo = req.params._id;
-    console.log('remove')
-    console.log("err:" + err)
-    if(err)
-      res.send(err)
-      res.json('deleted')
-  })
+      todo.save().then(todo => {
+        res.json('Todo updated!');
+      })
+      .catch(err => {
+        res.status(400).send("Update not possible");
+      });
+  });
 });
 
-
-// app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use('/', testDBRouter);
-// app.use('/users', usersRouter);
-// app.use('/routeAPI', testAPIRouter);
-// app.use('/testDB', testDBRouter);
-
-// // catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   console.log(req);
-//   next(createError(404));
-// });
-
+// delete method; remove task from db
+todoRoutes.route('/delete/:id').delete(function(req, res) {
+  console.log('delete called');
+  Todos.deleteOne({_id: req.params.id}, function(err, todo) {
+    if(err) res.json(err);
+    else res.json('Deleted');
+  });
+})
 
 
 module.exports = app;
