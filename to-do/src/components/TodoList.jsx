@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import TodoItem from './TodoItem';
+import Todo from './TodoItem';
 
-const Todo = props => (
-  <tr>
-    <td>{props.todo.task_title}</td>
-    <td>{props.todo.task_content}</td>
-    <td>{props.todo.task_priority}</td>
-    <td><Link to={"/edit/"+props.todo._id}>Edit</Link></td>
-  </tr>
-)
 
 class TodoList extends Component {
   constructor(props) {
@@ -21,10 +13,12 @@ class TodoList extends Component {
   }
 
 
-//GET data from api to render on front-end
   componentDidMount() {
+    this.getAllTask();
+  }
 
-    console.log('this is mounting')
+  getAllTask() {
+
     axios.get('http://localhost:4000/todos/')
       .then(response => {
         this.setState({ todos: response.data});
@@ -35,31 +29,30 @@ class TodoList extends Component {
       })
   }
 
-
 //Map through list of todos(data)
+
   todoList() {
-    console.log(this.state.todo);
+    // console.log(this.state.todo);
     return this.state.todos.map(function(task, i){
      return <Todo todo={task} key{...i}  />;
     });
   }
 
+
   render() {
     return(
-      <div>
-        <h2>Task Manager</h2>
-        <table>
+      <div className="task-list">
+        <h2>Task List</h2>
+        <table className="task-body">
           <thead>
-            <tr>
+            <tr className="task-heading">
               <th>Title</th>
               <th>Description</th>
                <th>Priority</th>
-              <th>Status</th>
             </tr>
           </thead>
           <tbody>
           { this.todoList() }
-
           </tbody>
         </table>
       </div>

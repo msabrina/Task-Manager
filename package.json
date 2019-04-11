@@ -4,12 +4,13 @@
   "description": "Interview Sample Application",
   "main": "index.js",
   "scripts": {
-    "start": "node"
+    "start": "concurrently \"cd api && node server.js\" \"cd to-do && npm start\""
   },
   "author": "Sabrina Mesa",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "mongodb": "^3.2.1",
     "mongoose": "^5.4.19",
@@ -17,5 +18,14 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msabrina/ToDo.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/msabrina/ToDo/issues"
+  },
+  "homepage": "https://github.com/msabrina/ToDo#readme"
 }

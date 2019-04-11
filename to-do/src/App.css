@@ -1,33 +1,104 @@
-.App {
+.container {
+  font-family: futura;
+}
+
+h2, h3, a {
+  color: #2a5393;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+label {
+  color: #2a5393;
+  font-weight: 500;
+}
+
+input {
+  margin-left: 16px;
+}
+
+.btn {
+  color: #2a5393 ;
+}
+
+.btn:hover {
+  background-color: #2b58a0;
+  color: #fff;
+}
+
+.navbar {
   text-align: center;
+  margin-top: 40px;
+  font-size: 34px;
+  text-decoration: none;
+  color: #2a5393;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container-main {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 80px;
+  justify-content: space-around;
 }
 
-.App-link {
-  color: #61dafb;
+.task-list {
+  width: 70%;
+}
+.task-list h2 {
+  margin-top: 0;
+  color: #2a5393;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.task-body {
+  width:100%
+}
+.task-body tr {
+  text-align: left;
+}
+
+.task-body th {
+  color: #2a5393;
+  text-transform: uppercase;
+}
+
+.task-body .task-heading {
+  background: #c6cbd3;
+}
+
+.edit-task {
+  width: 60%;
+}
+
+.form-complete {
+  margin: 14px 0;
+}
+
+.completed {
+  background-color:#2b911f;
+  margin-left: 0;
+}
+
+.create-task {
+  border: 3px solid #c6cbd3;
+  padding: 10px;
+}
+
+.create-task h3 {
+  margin-top: 0;
+}
+
+.edit-task .form-input {
+  padding: 14px 0;
+}
+
+.edit-task .btn {
+  margin-left: 0;
+}
+
+.create-task .form-input {
+  padding: 14px 0;
+}
+
+.create-task .btn {
+  margin-left: 0;
+  margin-top: 16px;
 }

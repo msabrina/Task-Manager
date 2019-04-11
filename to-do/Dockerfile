@@ -1,7 +1,7 @@
 # Use a lighter version of Node as a parent image
 FROM mhart/alpine-node:8.11.4
 # Set the working directory to /to-do
-WORKDIR /to-do
+WORKDIR /to-do/
 # copy package.json into the container at /to-do
 COPY package*.json /to-do/
 # install dependencies
