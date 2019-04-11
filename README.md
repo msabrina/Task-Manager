@@ -1,6 +1,6 @@
 ## Task Manager Application
 
-Full stack application which performs CRUD operations on a simplistic data model to create Tasks, and uses a datastore to store them.
+Full stack application which performs CRUD operations on a simplistic data model, and uses a datastore to store data.
 
 
 ## Technologies 
@@ -20,7 +20,7 @@ Clone project repo
 
 ````bash
 $ git clone git@github.com:msabrina/Task-Manager.git
-cd project folder (To-Do)
+$ cd project folder (To-Do)
 $ npm install
 $ npm start
 ````
@@ -49,24 +49,23 @@ One of my main goals was to delivered the app via containerization. I started of
 
 ### Improvements
 
-Automated unit and functional tests.
+Include Automated unit and functional tests.
 Add TypeScript.
 Get Docker Compose running without errors.
-Integreate with React Redux.
+Integrate with React Redux.
 
 
-
-### Other available Scripts
+### Other available scripts
 
 ````bash 
 $ docker-compose up
 ````
 ### References
 
-[Create React App](https://github.com/facebook/create-react-app)
-[Docker Docs](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
-[Dockerizing a React App](https://mherman.org/blog/dockerizing-a-react-app/#project-setup)
-[React + Webpack](https://www.valentinog.com/blog/react-webpack-babel/)
+[Create React App](https://github.com/facebook/create-react-app),
+[Docker Docs](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/),
+[Dockerizing a React App](https://mherman.org/blog/dockerizing-a-react-app/#project-setup),
+[React + Webpack](https://www.valentinog.com/blog/react-webpack-babel/),
 [mLab](https://mlab.com/)
 
 
