@@ -101,8 +101,10 @@ todoRoutes.route('/update/:id').post(function(req, res) {
 todoRoutes.route('/delete/:id').delete(function(req, res) {
   console.log('delete called');
   Todos.deleteOne({_id: req.params.id}, function(err, todo) {
-    if(err) res.json(err);
-    else res.json('Deleted');
+    if(err)
+      res.json(err);
+    else
+      res.json('Deleted');
   });
 })
 

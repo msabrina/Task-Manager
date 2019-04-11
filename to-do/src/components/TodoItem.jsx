@@ -37,7 +37,7 @@ class Todo extends Component {
   handleDelete(id) {
 
       // console.log(this.props.todo._id)
-    axios.post('http://localhost:4000/todos/delete/'+ this.props.todo._id)
+    axios.delete('http://localhost:4000/todos/delete/'+ this.props.todo._id)
         console.log(this.props.todo._id)
 
       let taskList = [this.props.todo];
