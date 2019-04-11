@@ -132,7 +132,8 @@ todoRoutes.route('/update/:id').post(function(req, res) {
 
 todoRoutes.route('/delete/:id').delete(function(req, res) {
   console.log('delete called');
-
+  console.log('delete id:'todos)
+  console.log(Todos._id)
   Todos.findById(res.params.id).deleteOne(function(err, todos) {
   // let todo = req.params._id;
     console.log('remove')
