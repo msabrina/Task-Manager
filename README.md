@@ -16,16 +16,16 @@ $ npm start
 This will start up To-Do and open a new tab.
 Or go to [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-````bash
 ## Technologies 
-#### [mLab](https://mlab.com/)
-#### Node v10.15.3
-#### Express v4.16.0 
-#### React v16.8.4
-#### React Router 5.0.0
-#### Mongodb v3.2.1
-#### Docker v18.09.2
-#### Docker Compose v1.23.2
+````bash
+Node v10.15.3
+Express v4.16.0 
+React v16.8.4
+React Router 5.0.0
+Mongodb v3.2.1
+mLab (https://mlab.com/)
+Docker v18.09.2
+Docker Compose v1.23.2
 ````
 
 ### User Stories
