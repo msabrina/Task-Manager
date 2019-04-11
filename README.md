@@ -1,17 +1,6 @@
 ## Task Manager Application
 
-Full stack application which performs CRUD operations on a simplistic data model to create Tasks, and uses a datastore to store them.
-
-
-## Technologies 
-#### [mLab](https://mlab.com/)
-#### Node v10.15.3
-#### Express v4.16.0 
-#### React v16.8.4
-#### React Router 5.0.0
-#### Mongodb v3.2.1
-#### Docker v18.09.2
-#### Docker Compose v1.23.2
+Full stack application which performs CRUD operations on a simplistic data model, and uses a datastore to store data.
 
 
 ## Setup 
@@ -20,13 +9,24 @@ Clone project repo
 
 ````bash
 $ git clone git@github.com:msabrina/Task-Manager.git
-cd project folder (To-Do)
+$ cd project folder (To-Do)
 $ npm install
 $ npm start
 ````
 This will start up To-Do and open a new tab.
 Or go to [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+## Technologies 
+````bash
+Node v10.15.3
+Express v4.16.0 
+React v16.8.4
+React Router 5.0.0
+Mongodb v3.2.1
+mLab (https://mlab.com/)
+Docker v18.09.2
+Docker Compose v1.23.2
+````
 
 ### User Stories
 1. User is able to create a task providing a task name, description, and priority.
@@ -49,24 +49,23 @@ One of my main goals was to delivered the app via containerization. I started of
 
 ### Improvements
 
-Automated unit and functional tests.
+Include Automated unit and functional tests.
 Add TypeScript.
 Get Docker Compose running without errors.
-Integreate with React Redux.
+Integrate with React Redux.
 
 
-
-### Other available Scripts
+### Other available scripts
 
 ````bash 
 $ docker-compose up
 ````
 ### References
 
-[Create React App](https://github.com/facebook/create-react-app)
-[Docker Docs](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
-[Dockerizing a React App](https://mherman.org/blog/dockerizing-a-react-app/#project-setup)
-[React + Webpack](https://www.valentinog.com/blog/react-webpack-babel/)
+[Create React App](https://github.com/facebook/create-react-app),
+[Docker Docs](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/),
+[Dockerizing a React App](https://mherman.org/blog/dockerizing-a-react-app/#project-setup),
+[React + Webpack](https://www.valentinog.com/blog/react-webpack-babel/),
 [mLab](https://mlab.com/)
 
 
